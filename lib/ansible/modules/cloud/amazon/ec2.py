@@ -1276,8 +1276,8 @@ def create_instances(module, ec2, vpc, override_count=None):
 
                 # Set spot ValidUntil
                 # https://docs.aws.amazon.com/cli/latest/reference/ec2/request-spot-instances.html
-                utc_valid_until = datetime.datetime.utcnow() +
-                    datetime.timedelta(seconds=spot_wait_timeout)
+                utc_valid_until = (datetime.datetime.utcnow()
+                                  + datetime.timedelta(seconds=spot_wait_timeout))
                 params['valid_until'] = utc_valid_until
 
                 res = ec2.request_spot_instances(spot_price, **params)
